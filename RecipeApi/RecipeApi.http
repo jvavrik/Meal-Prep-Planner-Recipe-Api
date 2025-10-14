@@ -1,6 +1,35 @@
 @RecipeApi_HostAddress = http://localhost:5138
 
-GET {{RecipeApi_HostAddress}}/weatherforecast/
+### 
+
+GET {{RecipeApi_HostAddress}}/api/recipes
 Accept: application/json
 
-###
+### 
+
+GET {{RecipeApi_HostAddress}}/api/recipes/1
+Accept: application/json
+
+### 
+
+DELETE {{RecipeApi_HostAddress}}/api/recipes/1
+Accept: application/json
+
+### 
+
+POST {{RecipeApi_HostAddress}}/api/recipes
+Accept: application/json
+Content-Type: application/json
+
+{
+  "Name": "Grilled Cheese",
+  "Description": "Simple, healthy grilled cheese",
+  "PrepTimeMinutes": 10,
+  "CookTimeMinutes": 15,
+  "Servings": 1,
+  "Instructions": "1. Get two slices of bread.\n2. Preheat pan to medium-high heat.\n3. Grill for 6-7 minutes per side until cheese is melty",
+  "Ingredients": [
+    "2 slices of bread",
+    "2 slices of cheese"
+  ]
+}
