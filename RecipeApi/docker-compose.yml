@@ -1,0 +1,16 @@
+﻿version: '3.8'
+
+services:
+    db:
+        image: postgres:15-alpine
+        environment:
+            - POSTGRES_USER=recipeuser
+            - POSTGRES_PASSWORD=P@ssW0rd!
+            - POSTGRES_DB=recipedb 
+        ports:
+            - "5432:5432"
+        volumes:
+            - recipe-data:/var/lib/postgresql/data
+volumes:
+    recipe-data:
+ 
