@@ -1,6 +1,15 @@
 ﻿version: '3.8'
 
 services:
+    api:
+        build: .
+        ports:
+            - "8080:8080"
+        depends_on:
+            - db
+        environment:
+            - ConnectionStrings__RecipeDb=Host=db;Database=recipedb;Username=recipeuser;Password=P@ssW0rd!
+    
     db:
         image: postgres:15-alpine
         environment:
