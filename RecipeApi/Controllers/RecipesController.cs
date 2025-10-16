@@ -9,9 +9,9 @@ namespace RecipeApi.Controllers
     public class RecipesController : ControllerBase
     {
         private readonly RecipeRepository _recipeRepository;
-        public RecipesController() 
+        public RecipesController(RecipeRepository recipeRepository) 
         { 
-            _recipeRepository = new RecipeRepository();
+            _recipeRepository = recipeRepository;
         }
 
         [HttpGet]

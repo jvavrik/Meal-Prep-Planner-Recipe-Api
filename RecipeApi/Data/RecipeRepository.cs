@@ -4,23 +4,27 @@ namespace RecipeApi.Data
 {
     public class RecipeRepository
     {
-        public RecipeRepository() { }
+        private RecipeDbContext _db;
+
+        public RecipeRepository(RecipeDbContext db) 
+        {
+            _db = db;
+        }
 
         public IEnumerable<Recipe> GetAllRecipes()
         {
-            return Recipes;
+            return _db.Recipes.ToList();
         }
 
         public Recipe GetRecipeById(int id)
         {
-            return Recipes.SingleOrDefault(x => x.Id == id);
+            return _db.Recipes.SingleOrDefault(x => x.Id == id);
         }
 
         public Recipe Create(Recipe recipe)
         {
-            var latestId = Recipes.OrderByDescending(x => x.Id).Select(x => x.Id).First();
-            recipe.Id = latestId+1;
-            Recipes.Add(recipe);
+            _db.Recipes.Add(recipe);
+            _db.SaveChanges();
             return recipe;
         }
 
@@ -42,7 +46,7 @@ namespace RecipeApi.Data
         }
 
         //temp hard coded list
-        private static List<Recipe> Recipes =  new List<Recipe>
+        public static List<Recipe> Recipes =  new List<Recipe>
         {
            new Recipe
             {
