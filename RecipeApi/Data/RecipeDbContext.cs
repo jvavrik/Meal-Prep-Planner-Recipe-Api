@@ -13,6 +13,9 @@ namespace RecipeApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Recipe>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd();
         }
     }
 }

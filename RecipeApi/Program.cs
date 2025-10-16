@@ -26,6 +26,12 @@ namespace RecipeApi
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<RecipeDbContext>();
                 dbContext.Database.Migrate();
+
+                if (!dbContext.Recipes.Any())
+                {
+                    dbContext.Recipes.AddRange(RecipeRepository.Recipes);
+                    dbContext.SaveChanges();
+                }
             }
 
             app.UseSwagger();
